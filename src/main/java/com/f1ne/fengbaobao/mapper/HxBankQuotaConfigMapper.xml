@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.f1ne.fengbaobao.dao.HxBankQuotaConfigMapper">
+  <resultMap id="BaseResultMap" type="com.f1ne.fengbaobao.domain.HxBankQuotaConfig">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="bank_id" jdbcType="INTEGER" property="bankId" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="bank_code" jdbcType="VARCHAR" property="bankCode" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="single_quota" jdbcType="DECIMAL" property="singleQuota" />
+    <result column="day_quota" jdbcType="DECIMAL" property="dayQuota" />
+    <result column="op_user_id" jdbcType="BIGINT" property="opUserId" />
+    <result column="op_user_name" jdbcType="VARCHAR" property="opUserName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.f1ne.fengbaobao.domain.HxBankQuotaConfig">
+    <result column="memo" jdbcType="LONGVARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bank_id, bank_name, bank_code, status, single_quota, day_quota, op_user_id, op_user_name, 
+    create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from hx_bank_quota_config
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hx_bank_quota_config
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.f1ne.fengbaobao.domain.HxBankQuotaConfig">
+    insert into hx_bank_quota_config (id, bank_id, bank_name, 
+      bank_code, status, single_quota, 
+      day_quota, op_user_id, op_user_name, 
+      create_time, update_time, memo
+      )
+    values (#{id,jdbcType=BIGINT}, #{bankId,jdbcType=INTEGER}, #{bankName,jdbcType=VARCHAR}, 
+      #{bankCode,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{singleQuota,jdbcType=DECIMAL}, 
+      #{dayQuota,jdbcType=DECIMAL}, #{opUserId,jdbcType=BIGINT}, #{opUserName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.f1ne.fengbaobao.domain.HxBankQuotaConfig">
+    insert into hx_bank_quota_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bankId != null">
+        bank_id,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="bankCode != null">
+        bank_code,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="singleQuota != null">
+        single_quota,
+      </if>
+      <if test="dayQuota != null">
+        day_quota,
+      </if>
+      <if test="opUserId != null">
+        op_user_id,
+      </if>
+      <if test="opUserName != null">
+        op_user_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="bankId != null">
+        #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="singleQuota != null">
+        #{singleQuota,jdbcType=DECIMAL},
+      </if>
+      <if test="dayQuota != null">
+        #{dayQuota,jdbcType=DECIMAL},
+      </if>
+      <if test="opUserId != null">
+        #{opUserId,jdbcType=BIGINT},
+      </if>
+      <if test="opUserName != null">
+        #{opUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.f1ne.fengbaobao.domain.HxBankQuotaConfig">
+    update hx_bank_quota_config
+    <set>
+      <if test="bankId != null">
+        bank_id = #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="singleQuota != null">
+        single_quota = #{singleQuota,jdbcType=DECIMAL},
+      </if>
+      <if test="dayQuota != null">
+        day_quota = #{dayQuota,jdbcType=DECIMAL},
+      </if>
+      <if test="opUserId != null">
+        op_user_id = #{opUserId,jdbcType=BIGINT},
+      </if>
+      <if test="opUserName != null">
+        op_user_name = #{opUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.f1ne.fengbaobao.domain.HxBankQuotaConfig">
+    update hx_bank_quota_config
+    set bank_id = #{bankId,jdbcType=INTEGER},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      single_quota = #{singleQuota,jdbcType=DECIMAL},
+      day_quota = #{dayQuota,jdbcType=DECIMAL},
+      op_user_id = #{opUserId,jdbcType=BIGINT},
+      op_user_name = #{opUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      memo = #{memo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.f1ne.fengbaobao.domain.HxBankQuotaConfig">
+    update hx_bank_quota_config
+    set bank_id = #{bankId,jdbcType=INTEGER},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      single_quota = #{singleQuota,jdbcType=DECIMAL},
+      day_quota = #{dayQuota,jdbcType=DECIMAL},
+      op_user_id = #{opUserId,jdbcType=BIGINT},
+      op_user_name = #{opUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
